@@ -8,10 +8,10 @@
 import Foundation
 
 enum APIConstants {
-    static let baseURL: String = "https://api.openweathermap.org/data/2.5"
+    static let baseURL: String = "https://api.openweathermap.org"
 
     enum Paths: String {
-        case weather = "/weather"
+        case weather = "/data/2.5/weather"
     }
 }
 

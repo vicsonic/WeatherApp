@@ -30,6 +30,16 @@
 		710D3AAC2B8AC1F50038DF8B /* WeatherMainData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 710D3AAA2B8AC1F50038DF8B /* WeatherMainData.swift */; };
 		710D3AAE2B8AC2FC0038DF8B /* WeatherWind.swift in Sources */ = {isa = PBXBuildFile; fileRef = 710D3AAD2B8AC2FC0038DF8B /* WeatherWind.swift */; };
 		710D3AAF2B8AC2FC0038DF8B /* WeatherWind.swift in Sources */ = {isa = PBXBuildFile; fileRef = 710D3AAD2B8AC2FC0038DF8B /* WeatherWind.swift */; };
+		710D3AB12B8BAC4A0038DF8B /* WeatherViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 710D3AB02B8BAC4A0038DF8B /* WeatherViewModel.swift */; };
+		710D3AB22B8BAC4A0038DF8B /* WeatherViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 710D3AB02B8BAC4A0038DF8B /* WeatherViewModel.swift */; };
+		710D3AB42B8BB2D40038DF8B /* WeatherView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 710D3AB32B8BB2D40038DF8B /* WeatherView.swift */; };
+		710D3AB52B8BB2D40038DF8B /* WeatherView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 710D3AB32B8BB2D40038DF8B /* WeatherView.swift */; };
+		710D3AB92B8BC1FF0038DF8B /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 710D3AB82B8BC1FF0038DF8B /* SnapKit */; };
+		710D3ABC2B8BC4B30038DF8B /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 710D3ABB2B8BC4B30038DF8B /* Kingfisher */; };
+		710D3ABE2B8BD4C00038DF8B /* ErrorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 710D3ABD2B8BD4C00038DF8B /* ErrorView.swift */; };
+		710D3ABF2B8BD4C00038DF8B /* ErrorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 710D3ABD2B8BD4C00038DF8B /* ErrorView.swift */; };
+		710D3AC22B8BE8250038DF8B /* UIFont+Weight.swift in Sources */ = {isa = PBXBuildFile; fileRef = 710D3AC12B8BE8250038DF8B /* UIFont+Weight.swift */; };
+		710D3AC32B8BE8250038DF8B /* UIFont+Weight.swift in Sources */ = {isa = PBXBuildFile; fileRef = 710D3AC12B8BE8250038DF8B /* UIFont+Weight.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -72,6 +82,10 @@
 		710D3AA72B8AC1BA0038DF8B /* WeatherData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherData.swift; sourceTree = "<group>"; };
 		710D3AAA2B8AC1F50038DF8B /* WeatherMainData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherMainData.swift; sourceTree = "<group>"; };
 		710D3AAD2B8AC2FC0038DF8B /* WeatherWind.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherWind.swift; sourceTree = "<group>"; };
+		710D3AB02B8BAC4A0038DF8B /* WeatherViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherViewModel.swift; sourceTree = "<group>"; };
+		710D3AB32B8BB2D40038DF8B /* WeatherView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherView.swift; sourceTree = "<group>"; };
+		710D3ABD2B8BD4C00038DF8B /* ErrorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorView.swift; sourceTree = "<group>"; };
+		710D3AC12B8BE8250038DF8B /* UIFont+Weight.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIFont+Weight.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -79,6 +93,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				710D3ABC2B8BC4B30038DF8B /* Kingfisher in Frameworks */,
+				710D3AB92B8BC1FF0038DF8B /* SnapKit in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -106,6 +122,7 @@
 				710D3A762B8AA2FD0038DF8B /* WeatherAppTests */,
 				710D3A802B8AA2FD0038DF8B /* WeatherAppUITests */,
 				710D3A5E2B8AA2FC0038DF8B /* Products */,
+				710D3AB72B8BC1FF0038DF8B /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -160,6 +177,7 @@
 		710D3A912B8AA3450038DF8B /* Features */ = {
 			isa = PBXGroup;
 			children = (
+				710D3AC02B8BE8120038DF8B /* Utils */,
 				710D3AA32B8ABFB90038DF8B /* Model */,
 				710D3A942B8AAF550038DF8B /* Network */,
 				710D3A922B8AA3520038DF8B /* Weather */,
@@ -171,6 +189,9 @@
 			isa = PBXGroup;
 			children = (
 				710D3A642B8AA2FC0038DF8B /* WeatherViewController.swift */,
+				710D3AB02B8BAC4A0038DF8B /* WeatherViewModel.swift */,
+				710D3AB32B8BB2D40038DF8B /* WeatherView.swift */,
+				710D3ABD2B8BD4C00038DF8B /* ErrorView.swift */,
 			);
 			path = Weather;
 			sourceTree = "<group>";
@@ -215,6 +236,21 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
+		710D3AB72B8BC1FF0038DF8B /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		710D3AC02B8BE8120038DF8B /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				710D3AC12B8BE8250038DF8B /* UIFont+Weight.swift */,
+			);
+			path = Utils;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -231,6 +267,10 @@
 			dependencies = (
 			);
 			name = WeatherApp;
+			packageProductDependencies = (
+				710D3AB82B8BC1FF0038DF8B /* SnapKit */,
+				710D3ABB2B8BC4B30038DF8B /* Kingfisher */,
+			);
 			productName = WeatherApp;
 			productReference = 710D3A5D2B8AA2FC0038DF8B /* WeatherApp.app */;
 			productType = "com.apple.product-type.application";
@@ -303,6 +343,10 @@
 				Base,
 			);
 			mainGroup = 710D3A542B8AA2FB0038DF8B;
+			packageReferences = (
+				710D3AB62B8BC1490038DF8B /* XCRemoteSwiftPackageReference "SnapKit" */,
+				710D3ABA2B8BC4B30038DF8B /* XCRemoteSwiftPackageReference "Kingfisher" */,
+			);
 			productRefGroup = 710D3A5E2B8AA2FC0038DF8B /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -348,13 +392,17 @@
 			buildActionMask = 2147483647;
 			files = (
 				710D3A962B8AAFC50038DF8B /* HTTPMethod.swift in Sources */,
+				710D3AB12B8BAC4A0038DF8B /* WeatherViewModel.swift in Sources */,
 				710D3AA02B8AB3BB0038DF8B /* APIClient.swift in Sources */,
 				710D3A652B8AA2FC0038DF8B /* WeatherViewController.swift in Sources */,
 				710D3A9E2B8AB31A0038DF8B /* RequestBuilder.swift in Sources */,
+				710D3AB42B8BB2D40038DF8B /* WeatherView.swift in Sources */,
+				710D3AC22B8BE8250038DF8B /* UIFont+Weight.swift in Sources */,
 				710D3AA52B8AC1990038DF8B /* CurrentWeather.swift in Sources */,
 				710D3AA22B8AB90E0038DF8B /* RequestPerformer.swift in Sources */,
 				710D3AA82B8AC1BA0038DF8B /* WeatherData.swift in Sources */,
 				710D3A612B8AA2FC0038DF8B /* AppDelegate.swift in Sources */,
+				710D3ABE2B8BD4C00038DF8B /* ErrorView.swift in Sources */,
 				710D3A982B8AAFDC0038DF8B /* APIResource.swift in Sources */,
 				710D3A632B8AA2FC0038DF8B /* SceneDelegate.swift in Sources */,
 				710D3AAE2B8AC2FC0038DF8B /* WeatherWind.swift in Sources */,
@@ -370,7 +418,11 @@
 				710D3AA92B8AC1BA0038DF8B /* WeatherData.swift in Sources */,
 				710D3AAF2B8AC2FC0038DF8B /* WeatherWind.swift in Sources */,
 				710D3A782B8AA2FD0038DF8B /* WeatherAppTests.swift in Sources */,
+				710D3AC32B8BE8250038DF8B /* UIFont+Weight.swift in Sources */,
 				710D3AAC2B8AC1F50038DF8B /* WeatherMainData.swift in Sources */,
+				710D3AB52B8BB2D40038DF8B /* WeatherView.swift in Sources */,
+				710D3AB22B8BAC4A0038DF8B /* WeatherViewModel.swift in Sources */,
+				710D3ABF2B8BD4C00038DF8B /* ErrorView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -699,6 +751,38 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		710D3AB62B8BC1490038DF8B /* XCRemoteSwiftPackageReference "SnapKit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SnapKit/SnapKit.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.7.1;
+			};
+		};
+		710D3ABA2B8BC4B30038DF8B /* XCRemoteSwiftPackageReference "Kingfisher" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/onevcat/Kingfisher.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 7.11.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		710D3AB82B8BC1FF0038DF8B /* SnapKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 710D3AB62B8BC1490038DF8B /* XCRemoteSwiftPackageReference "SnapKit" */;
+			productName = SnapKit;
+		};
+		710D3ABB2B8BC4B30038DF8B /* Kingfisher */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 710D3ABA2B8BC4B30038DF8B /* XCRemoteSwiftPackageReference "Kingfisher" */;
+			productName = Kingfisher;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 710D3A552B8AA2FB0038DF8B /* Project object */;
 }

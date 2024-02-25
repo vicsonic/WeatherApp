@@ -8,9 +8,9 @@
 import Foundation
 
 struct WeatherWind: Decodable {
-    let speed: Float
-    let degrees: Int
-    let gust: Float
+    let speed: Double
+    let degrees: Double
+    let gust: Double
 
     enum CodingKeys: String, CodingKey {
         case speed
