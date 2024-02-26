@@ -591,6 +591,10 @@
 				DEVELOPMENT_TEAM = 37RT5AB87J;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = WeatherApp/Info.plist;
+				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "We need your location to show you accurate weather data";
+				INFOPLIST_KEY_NSLocationAlwaysUsageDescription = "We need your location to show you accurate weather data";
+				INFOPLIST_KEY_NSLocationUsageDescription = "We need your location to show you accurate weather data";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "We need your location to show you accurate weather data";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
@@ -618,6 +622,10 @@
 				DEVELOPMENT_TEAM = 37RT5AB87J;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = WeatherApp/Info.plist;
+				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "We need your location to show you accurate weather data";
+				INFOPLIST_KEY_NSLocationAlwaysUsageDescription = "We need your location to show you accurate weather data";
+				INFOPLIST_KEY_NSLocationUsageDescription = "We need your location to show you accurate weather data";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "We need your location to show you accurate weather data";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";

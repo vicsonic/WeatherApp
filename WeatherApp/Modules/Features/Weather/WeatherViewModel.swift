@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import CoreLocation
 
 extension WeatherViewConfiguration {
     init(weather: CurrentWeather,
@@ -36,13 +37,24 @@ extension WeatherViewConfiguration {
     }
 }
 
-final class WeatherViewModel {
+enum ViewModelError: Error {
+    case `default`
+    case location
+}
+
+final class WeatherViewModel: NSObject {
     private enum Constants {
         static let errorMessage = "Something unexpected happened, please try again"
+        static let locationErrorMessage = "Please provide access to your location to provide current weather information"
     }
 
     private let errorViewConfiguration = ErrorViewConfiguration(message: Constants.errorMessage,
-                                                                icon: UIImage(systemName: "exclamationmark.triangle"))
+                                                                icon: UIImage(systemName: "exclamationmark.triangle"),
+                                                                actionTitle: "Retry")
+
+    private let locationErrorViewConfiguration = ErrorViewConfiguration(message: Constants.locationErrorMessage,
+                                                                       icon: UIImage(systemName: "location"),
+                                                                       actionTitle: "Enable")
 
     private let apiClient: APIClient
     private var currentWeather: CurrentWeather? {
@@ -56,6 +68,22 @@ final class WeatherViewModel {
                                                    windFormatter: windFormatter)))
         }
     }
+
+    var lastLocation: CLLocation? {
+        didSet {
+            guard let lastLocation else {
+                onState?(.error(configuration: locationErrorViewConfiguration))
+                return
+            }
+            loadCurrentWeather(location: lastLocation)
+        }
+    }
+
+    private let locationManager: CLLocationManager = {
+        let manager = CLLocationManager()
+        manager.desiredAccuracy = kCLLocationAccuracyBest
+        return manager
+    }()
 
     private let temperatureFormatter: MeasurementFormatter = {
         let formatter = MeasurementFormatter()
@@ -75,20 +103,81 @@ final class WeatherViewModel {
 
     var onState: ((WeatherViewState) -> Void)?
 
-    init(apiClient: APIClient = WeatherAPIClient()) {
-        self.apiClient = apiClient
+    var isLocationAccessEnabled: Bool {
+        switch locationManager.authorizationStatus {
+        case .notDetermined, .restricted, .denied:
+            return false
+        case .authorizedAlways, .authorizedWhenInUse:
+            return true
+        @unknown default:
+            return false
+        }
     }
 
-    func loadCurrentWeather(latitude: Float, longitude: Float) {
+    init(apiClient: APIClient = WeatherAPIClient()) {
+        self.apiClient = apiClient
+        super.init()
+        locationManager.delegate = self
+    }
+
+    func loadCurrentWeather() {
         onState?(.loading)
+        locationManager.startUpdatingLocation()
+    }
+}
+
+private extension WeatherViewModel {
+    func loadCurrentWeather(location: CLLocation) {
         Task {
             do {
-                let currentWeather = try await apiClient.requestCurrentWeather(latitude: latitude,
-                                                                               longitude: longitude)
+                let currentWeather = try await apiClient.requestCurrentWeather(latitude: location.coordinate.latitude,
+                                                                               longitude: location.coordinate.longitude)
                 self.currentWeather = currentWeather
             } catch {
                 onState?(.error(configuration: errorViewConfiguration))
             }
         }
+    }
+}
+
+// MARK: - CLLocationManagerDelegate
+
+extension WeatherViewModel: CLLocationManagerDelegate {
+    func requestLocationAccess() {
+        onState?(.loading)
+        switch locationManager.authorizationStatus {
+        case .notDetermined:
+            locationManager.requestWhenInUseAuthorization()
+        case .restricted, .denied:
+            guard let urlGeneral = URL(string: UIApplication.openSettingsURLString) else {
+                return
+            }
+            UIApplication.shared.open(urlGeneral)
+        case .authorizedAlways, .authorizedWhenInUse:
+            loadCurrentWeather()
+        @unknown default:
+            break
+        }
+    }
+
+    func locationManagerDidChangeAuthorization(_ manager: CLLocationManager) {
+        switch manager.authorizationStatus {
+        case .authorizedAlways, .authorizedWhenInUse:
+            loadCurrentWeather()
+        default:
+            onState?(.error(configuration: locationErrorViewConfiguration))
+        }
+    }
+
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        guard let userLocation = locations.last else {
+            onState?(.error(configuration: locationErrorViewConfiguration))
+            return
+        }
+        self.lastLocation = userLocation
+    }
+
+    func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
+        onState?(.error(configuration: locationErrorViewConfiguration))
     }
 }

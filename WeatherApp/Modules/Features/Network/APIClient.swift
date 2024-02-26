@@ -13,7 +13,7 @@ enum APIError: Error {
 
 protocol APIClient {
     var performer: RequestPerforming { get set }
-    func requestCurrentWeather(latitude: Float, longitude: Float) async throws -> CurrentWeather
+    func requestCurrentWeather(latitude: Double, longitude: Double) async throws -> CurrentWeather
 }
 
 private extension APIClient {
@@ -43,7 +43,7 @@ final class WeatherAPIClient: APIClient {
         self.performer = performer
     }
 
-    func requestCurrentWeather(latitude: Float, longitude: Float) async throws -> CurrentWeather {
+    func requestCurrentWeather(latitude: Double, longitude: Double) async throws -> CurrentWeather {
         let resource: WeatherAPIResource = .init(queryItems: [
             .init(name: "lat", value: String(describing: latitude)),
             .init(name: "lon", value: String(describing: longitude)),
@@ -59,7 +59,7 @@ final class WeatherAPIClient: APIClient {
 final class MockAPIClient: APIClient {
     var performer: RequestPerforming = RequestPerformer()
 
-    func requestCurrentWeather(latitude: Float, longitude: Float) async throws -> CurrentWeather {
+    func requestCurrentWeather(latitude: Double, longitude: Double) async throws -> CurrentWeather {
         let currentWeather: CurrentWeather = try await requestAPI(resource: MockAPIResource(),
                                                                   method: .get,
                                                                   performer: performer)

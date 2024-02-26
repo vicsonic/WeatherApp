@@ -18,7 +18,7 @@ final class WeatherViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupSelf()
-        updateCurrentWeather()
+        loadData()
     }
 }
 
@@ -32,12 +32,15 @@ private extension WeatherViewController {
             self?.contentView.update(using: state)
         }
         contentView.onRetryButtonTapEvent = { [weak self] in
-            self?.updateCurrentWeather()
+            self?.loadData()
         }
     }
 
-    func updateCurrentWeather() {
-        viewModel.loadCurrentWeather(latitude: 34.0194704,
-                                     longitude: -118.4912273)
+    func loadData() {
+        if viewModel.isLocationAccessEnabled {
+            viewModel.loadCurrentWeather()
+        } else {
+            viewModel.requestLocationAccess()
+        }
     }
 }

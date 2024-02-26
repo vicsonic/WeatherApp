@@ -15,6 +15,7 @@ final class ErrorView: UIView {
     struct Configuration {
         let message: String
         let icon: UIImage?
+        let actionTitle: String
     }
 
     private let stackView: UIStackView = {
@@ -41,11 +42,10 @@ final class ErrorView: UIView {
         return label
     }()
 
-    private let retryButton: UIButton = {
+    private let actionButton: UIButton = {
         var configuration = UIButton.Configuration.borderedProminent()
         configuration.baseBackgroundColor = .systemBlue
         configuration.baseForegroundColor = .white
-        configuration.title = "Retry"
         let button = UIButton(configuration: configuration)
         button.titleLabel?.font = .preferredFont(for: .callout, weight: .medium)
         return button
@@ -68,14 +68,13 @@ private extension ErrorView {
     func setupSelf() {
         setupHierarchy()
         setupLayout()
-        setupActions()
     }
 
     func setupHierarchy() {
         addSubview(stackView)
         stackView.addArrangedSubview(icon)
         stackView.addArrangedSubview(messageLabel)
-        stackView.addArrangedSubview(retryButton)
+        stackView.addArrangedSubview(actionButton)
     }
 
     func setupLayout() {
@@ -89,15 +88,9 @@ private extension ErrorView {
             make.width.equalToSuperview().multipliedBy(0.4)
             make.height.equalTo(icon.snp.width)
         }
-        retryButton.snp.makeConstraints { make in
+        actionButton.snp.makeConstraints { make in
             make.height.equalTo(33)
         }
-    }
-
-    func setupActions() {
-        retryButton.addAction(UIAction(title: "Retry", handler: { [weak self] action in
-            self?.onButtonTapEvent?()
-        }), for: .touchUpInside)
     }
 }
 
@@ -105,5 +98,9 @@ extension ErrorView {
     func update(configuration: ErrorViewConfiguration) {
         messageLabel.text = configuration.message
         icon.image = configuration.icon
+        actionButton.setTitle(configuration.actionTitle, for: .normal)
+        actionButton.addAction(UIAction(handler: { [weak self] action in
+            self?.onButtonTapEvent?()
+        }), for: .touchUpInside)
     }
 }
